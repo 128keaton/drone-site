@@ -6,7 +6,12 @@ await Bun.build({
   outdir: "docs",
   plugins: [plugin],
   minify: true,
-
+  naming: {
+    // default values
+    entry: "[dir]/[name].[ext]",
+    chunk: "[name].[ext]",
+    asset: "[name].[ext]",
+  },
   target: "browser",
   sourcemap: "linked",
   define: {
