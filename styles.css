@@ -5,3 +5,9 @@
         cmyk --default,
         dark;
 }
+
+.logo-orange {
+    filter: sepia(1%) hue-rotate(175deg);
+    -webkit-filter: sepia(1%) hue-rotate(175deg);
+    -moz-filter: sepia(1%) hue-rotate(175deg);
+}
