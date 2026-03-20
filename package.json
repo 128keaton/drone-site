@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun --hot ./index.html",
+    "build": "bun build --compile --target=browser ./index.html --outdir=dist"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/bun": "latest",
+    "bun-plugin-tailwind": "^0.1.2",
+    "daisyui": "^5.5.19"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.2.2"
+  }
+}
