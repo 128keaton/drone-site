@@ -44,6 +44,7 @@
     /* effects */
     --depth: 1;
     --noise: 0;
+    --font-family: "IBM Plex Serif", "Segoe UI", system-ui, sans-serif;
 }
 
 :root {
