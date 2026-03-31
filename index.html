@@ -1,78 +1,155 @@
 <!doctype html>
-<html data-theme="cmyk" class="bg-base-300 overflow-hidden">
+<html data-theme="midsouth" class="bg-base-300 overflow-hidden">
     <head>
         <title>Give us a fly! | Mid-South Sky</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="preload"
+            as="image"
+            href="./fatdanny/dji_fly_20260212_133320_0103_1770929054804_photo.jpg"
+            fetchpriority="high"
+        />
+        <link
+            rel="preload"
+            as="image"
+            href="./fatdanny/dji_fly_20260212_191232_0114_1771003117613_photo.jpg"
+        />
+        <link
+            rel="preload"
+            as="image"
+            href="./fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg"
+        />
         <link rel="stylesheet" href="./styles.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body class="bg-base-300 h-screen w-screen">
-        <div class="carousel w-full">
-            <div id="slide1" class="carousel-item relative w-full">
-                <img
-                    src="./poop/3455front.jpg"
-                    class="w-full h-screen object-cover blur-xs"
-                />
-                <div
-                    class="absolute left-5 top-32 bottom-0 flex items-center right-5 justify-center z-20"
-                >
-                    <div class="p-4 px-8">
-                        <figure class="max-w-100">
-                            <img
-                                alt="Mid-South Sky"
-                                draggable="false"
-                                class="object-contain logo-orange"
-                                src="./poop/Just_logo.png"
-                            />
-                        </figure>
+    <body class="bg-base-300 min-h-screen">
+        <main class="min-h-screen">
+            <section class="relative h-screen">
+                <div id="hero-carousel" class="carousel carousel-vertical w-full h-screen">
+                    <div id="slide1" class="carousel-item relative w-full h-screen">
+                        <img
+                            src="./fatdanny/dji_fly_20260212_133320_0103_1770929054804_photo.jpg"
+                            class="w-full h-full object-cover"
+                            alt="Mid-South Sky aerial"
+                        />
+                    </div>
+                    <div id="slide2" class="carousel-item relative w-full h-screen">
+                        <img
+                            src="./fatdanny/dji_fly_20260212_191232_0114_1771003117613_photo.jpg"
+                            class="w-full h-full object-cover"
+                            alt="Mid-South Sky landscape"
+                        />
+                    </div>
+                    <div id="slide3" class="carousel-item relative w-full h-screen">
+                        <img
+                            src="./fatdanny/DJI_20250628124031_0040_D.jpg"
+                            class="w-full h-full object-cover"
+                            alt="Mid-South Sky bridge"
+                        />
                     </div>
                 </div>
-            </div>
-            <div id="slide2" class="carousel-item relative w-full">
-                <img
-                    src="./poop/DJI_20250628124031_0040_D.JPG"
-                    class="w-full h-screen object-cover blur-xs"
-                />
-                <div
-                    class="absolute left-5 top-32 bottom-0 flex items-center right-5 justify-center z-20"
-                >
-                    <div class="p-4 px-8">
-                        <figure class="max-w-100">
+
+                <div class="fixed inset-0 bg-neutral/70 backdrop-blur-md pointer-events-none"></div>
+
+                <div class="fixed inset-0 z-10 flex items-center justify-center text-center text-base-content px-6">
+                    <div class="max-w-3xl">
+                        <svg
+                            class="w-full max-w-3xl -mb-8 overflow-visible select-none"
+                            viewBox="0 0 600 260"
+                            aria-label="Give us a fly!"
+                        >
+                            <defs>
+                                <path id="tagline-arc" d="M 40 200 Q 300 40 560 200" />
+                            </defs>
+                            <text
+                                class="fill-white drop-shadow"
+                                style="font-weight: 800; letter-spacing: 0.04em; font-size: 72px;"
+                            >
+                                <textPath href="#tagline-arc" startOffset="50%" text-anchor="middle">
+                                    Give us a fly!
+                                </textPath>
+                            </text>
+                        </svg>
+                        <div class="flex justify-center">
                             <img
-                                alt="Mid-South Sky"
-                                draggable="false"
-                                class="object-contain"
                                 src="./poop/Just_logo.png"
+                                alt="Mid-South Sky"
+                                class="w-48 sm:w-60 md:w-72"
+                                draggable="false"
                             />
-                        </figure>
+                        </div>
+                        <h1
+                            class="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold text-white/90 drop-shadow"
+                        >
+                            Mid-South Sky
+                        </h1>
+                        <p class="mt-4 text-lg text-white/90 drop-shadow">
+                            Aerial imagery and drone services across the Mid-South.
+                        </p>
+                        <div class="mt-8 flex flex-col items-center gap-4">
+                            <div
+                                class="card bg-white/90 border border-base-content/20 shadow-2xl rounded-none"
+                            >
+                                <div class="card-body px-8 py-6">
+                                    <div class="text-xs uppercase tracking-[0.35em] text-base-content/60">
+                                        Contact
+                                    </div>
+                                    <div class="mt-2 h-px w-full bg-base-content/20"></div>
+                                    <div class="mt-4 grid gap-4 sm:grid-cols-2 sm:gap-8">
+                                        <div>
+                                            <div class="text-[11px] uppercase tracking-[0.25em] text-base-content/60">
+                                                Call
+                                            </div>
+                                            <a
+                                                href="tel:+19012765172"
+                                                class="mt-2 block text-2xl font-semibold text-primary"
+                                            >
+                                                901-276-5172
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <div class="text-[11px] uppercase tracking-[0.25em] text-base-content/60">
+                                                Email
+                                            </div>
+                                            <a
+                                                href="mailto:info@midsouthsky.com"
+                                                class="mt-2 block text-xl font-semibold text-secondary"
+                                            >
+                                                info@midsouthsky.com
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a
+                                href="./gallery"
+                                class="text-xs uppercase tracking-[0.35em] text-white/80 hover:text-white"
+                            >
+                                View Gallery
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div
-            class="rotate-3 *:-rotate-3 flex flex-col bg-base/20 glass text-white text-center items-center justify-center shadow-lg fixed z-10 -bottom-20 -left-8 right-0 h-[50vh] gap-4 py-8"
-        ></div>
-        <div
-            class="fixed left-0 right-0 text-white flex-col flex items-center justify-center z-20 top-[78vh]"
-        >
-            <span
-                class="text-6xl font-bold tracking-wide select-none opacity-90 text-shadow-gray-400/70 text-shadow-md"
-                >Give us a fly!</span
-            >
-            <span class="mb-8 text-3xl mt-4 font-semibold"
-                >and try Mid-South Sky</span
-            >
-            <a href="tel:+19012765172" class="text-4xl font-bold select-all"
-                >901-276-5172</a
-            >
-            <a class="text-2xl select-all" href="mailto:info@midsouthsky.com"
-                >info@midsouthsky.com</a
-            >
-        </div>
-        <div class="fixed flex items-center left-0 right-0 top-[70vh] z-20">
-            <div class="flex w-full justify-center gap-2 py-2">
-                <a href="#slide1" class="btn btn-xs">1</a>
-                <a href="#slide2" class="btn btn-xs">2</a>
-            </div>
-        </div>
+
+
+            </section>
+        </main>
+        <script>
+            const carousel = document.getElementById("hero-carousel");
+            const slides = Array.from(
+                carousel?.querySelectorAll(".carousel-item") ?? []
+            );
+            let index = 0;
+            setInterval(() => {
+                if (!carousel || slides.length === 0) return;
+                index = (index + 1) % slides.length;
+                slides[index].scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 6000);
+        </script>
     </body>
 </html>

@@ -6,10 +6,18 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To develop locally:
 
 ```bash
-bun run index.ts
+bun run dev
 ```
 
-This project was created using `bun init` in bun v1.3.11. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+To build the static site:
+
+```bash
+bun run build
+```
+
+The production output is written to `docs/` for GitHub Pages.
+
+GitHub Pages deployment is handled by the workflow in `.github/workflows/static.yml` and publishes the `docs/` directory on pushes to `main`.
