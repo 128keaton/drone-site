@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-theme="midsouth" class="bg-base-300">
+<html data-theme="midsouth" class="bg-base-300 scroll-smooth">
     <head>
         <title>Gallery | Mid-South Sky</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,9 +11,10 @@
         <link rel="stylesheet" href="./styles.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body class="bg-base-300 min-h-screen">
-        <main class="min-h-screen">
-            <section class="hero min-h-[20vh] bg-base-200">
+    <body class="bg-base-300 min-h-screen overflow-x-hidden m-0 p-0">
+        <!-- Main content with bottom padding on mobile -->
+        <main class="min-h-screen pb-20 lg:pb-0">
+            <section class="hero min-h-fit bg-base-200">
                 <div class="hero-content text-center">
                     <div class="max-w-3xl">
                         <h1 class="text-4xl sm:text-5xl font-bold">Mid-South Sky</h1>
@@ -29,10 +30,10 @@
                                             Call
                                         </div>
                                         <a
-                                            href="tel:+19012765172"
+                                            href="tel:+9012865172"
                                             class="mt-2 block text-2xl font-semibold text-primary text-center"
                                         >
-                                            901-276-5172
+                                            901-286-5172
                                         </a>
                                     </div>
                                     <div>
@@ -62,82 +63,128 @@
                 </div>
             </section>
 
-            <section class="py-12">
+            <!-- Content wrapper with sticky nav -->
+            <div class="flex lg:gap-0 lg:relative">
+                <!-- Desktop Side Navigation (Sticky) -->
+                <nav class="hidden lg:sticky lg:top-4 lg:flex lg:flex-col lg:w-64 lg:h-fit lg:bg-base-100 lg:border lg:border-base-content/20 lg:p-6 lg:gap-4 lg:z-30 lg:flex-shrink-0 lg:self-start lg:m-4 lg:ml-6 lg:rounded-lg">
+                    <ul class="flex flex-col gap-2">
+                        <li>
+                            <a href="#real-estate" class="link link-hover text-sm">Real Estate</a>
+                        </li>
+                        <li>
+                            <a href="#general" class="link link-hover text-sm">General</a>
+                        </li>
+                        <li>
+                            <a href="#night-time" class="link link-hover text-sm">Night Time</a>
+                        </li>
+                        <li>
+                            <a href="#cinematography" class="link link-hover text-sm">Dynamic Cinematography</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Sections container -->
+                <div class="flex-1 w-full">
+                    <!-- Real Estate Section -->
+                    <section id="real-estate" class="py-16 bg-base-300 scroll-mt-20 w-full">
                 <div class="mx-auto max-w-6xl px-6">
+                    <div class="mb-12">
+                        <div class="inline-block">
+                            <h2 class="text-3xl sm:text-4xl font-bold">Real Estate</h2>
+                            <div class="mt-3 h-1 w-24 bg-gradient-to-r from-primary to-secondary"></div>
+                        </div>
+                        <p class="mt-4 text-base-content/70 max-w-2xl">Professional aerial photography for property showcases and development projects.</p>
+                    </div>
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny2/DJI_20260331101714_0015_D.JPG"
+                                        alt="Property"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny2/DJI_20260331101753_0016_D.JPG"
+                                        alt="Property"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny2/DJI_20260331101955_0021_D.JPG"
+                                        alt="Property"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny2/DJI_20260331104941_0101_D.JPG"
+                                        alt="Property"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny2/DJI_20260331104951_0102_D.JPG"
+                                        alt="Property"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- General Section -->
+            <section id="general" class="py-16 bg-base-200 scroll-mt-32 lg:scroll-mt-16 w-full lg:mx-4 lg:mt-4 lg:rounded-lg lg:border lg:border-base-content/20">
+                <div class="mx-auto max-w-6xl px-6">
+                    <div class="mb-12">
+                        <div class="inline-block">
+                            <h2 class="text-3xl sm:text-4xl font-bold">General</h2>
+                            <div class="mt-3 h-1 w-24 bg-gradient-to-r from-secondary to-primary"></div>
+                        </div>
+                        <p class="mt-4 text-base-content/70 max-w-2xl">Beautiful aerial landscapes and scenic views captured from the sky.</p>
+                    </div>
                     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
                             <button class="focus:outline-none group gallery-item" type="button">
                                 <figure class="overflow-hidden aspect-[4/3]">
                                     <img
                                         src="./fatdanny/DJI_20250628124031_0040_D.jpg"
-                                        alt="Aerial landscape"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
-                                    />
-                                </figure>
-                            </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Aerial Landscape</h2>
-                            </div>
-                        </div>
-
-                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
-                            <button class="focus:outline-none group gallery-item" type="button">
-                                <figure class="overflow-hidden aspect-[4/3]">
-                                    <img
-                                        src="./fatdanny/dji_fly_20260212_133012_0100_1770929082415_photo.jpg"
-                                        alt="Drone detail"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
-                                    />
-                                </figure>
-                            </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Drone Detail</h2>
-                            </div>
-                        </div>
-
-                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
-                            <button class="focus:outline-none group gallery-item" type="button">
-                                <figure class="overflow-hidden aspect-[4/3]">
-                                    <img
-                                        src="./fatdanny/dji_fly_20260212_133320_0103_1770929054804_photo.jpg"
-                                        alt="Aerial property"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
-                                    />
-                                </figure>
-                            </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Property Overview</h2>
-                            </div>
-                        </div>
-
-                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
-                            <button class="focus:outline-none group gallery-item" type="button">
-                                <figure class="overflow-hidden aspect-[4/3]">
-                                    <img
-                                        src="./fatdanny/dji_fly_20260212_133628_0107_1770929053510_photo.jpg"
-                                        alt="Wide aerial"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
-                                    />
-                                </figure>
-                            </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Wide Aerial</h2>
-                            </div>
-                        </div>
-
-                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
-                            <button class="focus:outline-none group gallery-item" type="button">
-                                <figure class="overflow-hidden aspect-[4/3]">
-                                    <img
-                                        src="./fatdanny/dji_fly_20260212_191232_0114_1771003117613_photo.jpg"
                                         alt="Landscape"
                                         loading="lazy"
                                         decoding="async"
@@ -145,9 +192,77 @@
                                     />
                                 </figure>
                             </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Landscape</h2>
-                            </div>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny/dji_fly_20260212_133012_0100_1770929082415_photo.jpg"
+                                        alt="Property view"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny/dji_fly_20260212_133320_0103_1770929054804_photo.jpg"
+                                        alt="Property overview"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny/dji_fly_20260212_133628_0107_1770929053510_photo.jpg"
+                                        alt="Development site"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Night Time Section -->
+            <section id="night-time" class="py-16 bg-base-300 scroll-mt-32 lg:scroll-mt-16 w-full">
+                <div class="mx-auto max-w-6xl px-6">
+                    <div class="mb-12">
+                        <div class="inline-block">
+                            <h2 class="text-3xl sm:text-4xl font-bold">Night Time</h2>
+                            <div class="mt-3 h-1 w-24 bg-gradient-to-r from-primary to-secondary"></div>
+                        </div>
+                        <p class="mt-4 text-base-content/70 max-w-2xl">Stunning twilight and evening shots capturing the magic of dusk and night.</p>
+                    </div>
+                    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
+                            <button class="focus:outline-none group gallery-item" type="button">
+                                <figure class="overflow-hidden aspect-[4/3]">
+                                    <img
+                                        src="./fatdanny/dji_fly_20260212_191232_0114_1771003117613_photo.jpg"
+                                        alt="Evening shot"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
+                                    />
+                                </figure>
+                            </button>
                         </div>
 
                         <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
@@ -155,16 +270,13 @@
                                 <figure class="overflow-hidden aspect-[4/3]">
                                     <img
                                         src="./fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg"
-                                        alt="Twilight flight"
+                                        alt="Twilight"
                                         loading="lazy"
                                         decoding="async"
                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
                                     />
                                 </figure>
                             </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Twilight Flight</h2>
-                            </div>
                         </div>
 
                         <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
@@ -172,16 +284,13 @@
                                 <figure class="overflow-hidden aspect-[4/3]">
                                     <img
                                         src="./fatdanny/dji_fly_20260212_191540_0120_1771003103223_photo.jpg"
-                                        alt="Drone detail"
+                                        alt="Night sky"
                                         loading="lazy"
                                         decoding="async"
                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
                                     />
                                 </figure>
                             </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Drone Detail</h2>
-                            </div>
                         </div>
 
                         <div class="card bg-base-100 shadow-xl transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden">
@@ -189,74 +298,114 @@
                                 <figure class="overflow-hidden aspect-[4/3]">
                                     <img
                                         src="./fatdanny/dji_fly_20260212_191712_0122_1771003099490_photo.jpg"
-                                        alt="Wide aerial"
+                                        alt="Aerial view"
                                         loading="lazy"
                                         decoding="async"
                                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02] cursor-pointer"
                                     />
                                 </figure>
                             </button>
-                            <div class="card-body">
-                                <h2 class="card-title">Wide Aerial</h2>
-                            </div>
                         </div>
                     </div>
-
-                    <dialog id="gallery-modal" class="modal">
-                        <div class="modal-box max-w-6xl">
-                            <h3 id="gallery-modal-title" class="font-bold text-lg"></h3>
-
-                            <div class="relative mt-4">
-                                <button
-                                    id="gallery-prev"
-                                    type="button"
-                                    class="btn btn-circle btn-ghost absolute left-2 top-1/2 -translate-y-1/2 z-10"
-                                    aria-label="Previous image"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="h-5 w-5"
-                                    >
-                                        <path d="M15 18l-6-6 6-6" />
-                                    </svg>
-                                </button>
-
-                                <div id="gallery-modal-image-wrap" class="w-full overflow-hidden"></div>
-
-                                <button
-                                    id="gallery-next"
-                                    type="button"
-                                    class="btn btn-circle btn-ghost absolute right-2 top-1/2 -translate-y-1/2 z-10"
-                                    aria-label="Next image"
-                                >
-                                    <svg
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="h-5 w-5"
-                                    >
-                                        <path d="M9 18l6-6-6-6" />
-                                    </svg>
-                                </button>
-                            </div>
-
-                            <div class="modal-action">
-                                <form method="dialog">
-                                    <button class="btn">Close</button>
-                                </form>
-                            </div>
-                        </div>
-                    </dialog>
                 </div>
             </section>
+
+            <!-- Dynamic Cinematography Section -->
+            <section id="cinematography" class="py-16 bg-base-200 scroll-mt-32 lg:scroll-mt-16 w-full lg:mx-4 lg:mt-4 lg:mb-4 lg:rounded-lg lg:border lg:border-base-content/20">
+                <div class="mx-auto max-w-6xl px-6">
+                    <div class="mb-12">
+                        <div class="inline-block">
+                            <h2 class="text-3xl sm:text-4xl font-bold">Dynamic Cinematography</h2>
+                            <div class="mt-3 h-1 w-24 bg-gradient-to-r from-secondary to-primary"></div>
+                        </div>
+                        <p class="mt-4 text-base-content/70 max-w-2xl">High-quality drone videography and cinematic footage showcasing the art of aerial cinematography.</p>
+                    </div>
+                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-base-300 flex items-center justify-center">
+                        <div class="text-center text-base-content/50 p-6">
+                            <p class="text-lg font-semibold mb-2">YouTube Video Embed</p>
+                            <p class="text-sm">Replace this with your YouTube embed code</p>
+                            <!--
+                            Replace with your YouTube embed:
+                            <iframe
+                                class="w-full h-full"
+                                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                                title="Mid-South Sky Cinematography"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+                </div>
+            </div>
+
+            <!-- Mobile Bottom Navigation -->
+            <nav class="fixed lg:hidden bottom-0 left-0 right-0 bg-base-100 border-t border-base-content/10 z-40">
+                <div class="flex gap-1 p-2 justify-start">
+                    <a href="#real-estate" class="btn btn-sm btn-ghost">Real Estate</a>
+                    <a href="#general" class="btn btn-sm btn-ghost">General</a>
+                    <a href="#night-time" class="btn btn-sm btn-ghost">Night Time</a>
+                    <a href="#cinematography" class="btn btn-sm btn-ghost">Cinema</a>
+                </div>
+            </nav>
+
+            <!-- Gallery Modal -->
+            <dialog id="gallery-modal" class="modal">
+                <div class="modal-box max-w-6xl">
+                    <h3 id="gallery-modal-title" class="font-bold text-lg"></h3>
+
+                    <div class="relative mt-4">
+                        <button
+                            id="gallery-prev"
+                            type="button"
+                            class="btn btn-circle btn-ghost absolute left-2 top-1/2 -translate-y-1/2 z-10"
+                            aria-label="Previous image"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="h-5 w-5"
+                            >
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </button>
+
+                        <div id="gallery-modal-image-wrap" class="w-full overflow-hidden"></div>
+
+                        <button
+                            id="gallery-next"
+                            type="button"
+                            class="btn btn-circle btn-ghost absolute right-2 top-1/2 -translate-y-1/2 z-10"
+                            aria-label="Next image"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="h-5 w-5"
+                            >
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </main>
 
         <script>
@@ -274,11 +423,10 @@
                 if (items.length === 0) return;
                 currentIndex = (index + items.length) % items.length;
                 const button = items[currentIndex];
-                const card = button.closest(".card");
-                const title = card?.querySelector(".card-title")?.textContent ?? "";
                 const img = button.querySelector("img");
+                const alt = img?.alt ?? "";
 
-                if (modalTitle) modalTitle.textContent = title;
+                if (modalTitle) modalTitle.textContent = alt;
 
                 if (modalImageWrap) {
                     modalImageWrap.innerHTML = "";
@@ -334,6 +482,32 @@
                     isPointerDown = false;
                 });
             }
+
+            // Navigation highlighting
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            const sections = document.querySelectorAll('[id^="real-estate"], [id^="general"], [id^="night-time"], [id^="cinematography"]');
+
+            function updateActiveNav() {
+                let current = '';
+
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove('font-bold', 'text-primary');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('font-bold', 'text-primary');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveNav);
+            updateActiveNav();
         </script>
     </body>
 </html>
