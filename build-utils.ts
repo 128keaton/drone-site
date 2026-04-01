@@ -21,21 +21,21 @@ const GALLERY_SECTIONS: GallerySection[] = [
         title: "Real Estate",
         description:
             "Professional aerial photography for property showcases and development projects.",
-        directory: "asset",
+        directory: "asset/real-estate",
     },
     {
         id: "general",
         title: "General",
         description:
             "Beautiful aerial landscapes and scenic views captured from the sky.",
-        directory: "asset",
+        directory: "asset/general",
     },
     {
         id: "night-time",
         title: "Night Time",
         description:
             "Stunning twilight and evening shots capturing the magic of dusk and night.",
-        directory: "asset",
+        directory: "asset/night-time",
     },
     {
         id: "cinematography",
@@ -66,7 +66,7 @@ export async function getImagesFromDirectory(
             const ext = extname(file).toLowerCase();
             if (SUPPORTED_EXTENSIONS.has(ext)) {
                 images.push({
-                    src: `./asset/${file}`,
+                    src: `./${dirPath}/${file}`,
                     alt: file.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " "),
                 });
             }

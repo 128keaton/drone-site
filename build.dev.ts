@@ -110,12 +110,7 @@ if (isWatchMode) {
     console.log(`Server running. Watching for changes...\n`);
 
     // Watch for file changes
-    const filesToWatch = [
-        "index.html",
-        "gallery.html",
-        "styles.css",
-        "plugins",
-    ];
+    const filesToWatch = ["index.html", "gallery.html", "styles.css"];
 
     let buildTimeout: Timer | null = null;
 
