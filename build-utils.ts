@@ -1,5 +1,6 @@
 import { readdir } from "fs/promises";
 import { extname } from "path";
+import { generateMetaTags } from "./seo-config";
 
 export interface GallerySection {
     id: string;
@@ -174,4 +175,17 @@ ${generateMobileNavigation(navSections)}
         imageCount,
         categoryCount: navSections.length,
     };
+}
+
+export function injectSEOTags(htmlSource: string, pageKey: string): string {
+    const metaTags = generateMetaTags(pageKey);
+
+    // Replace the head content with injected SEO tags
+    return htmlSource.replace(
+        /<head>([\s\S]*?)<\/head>/,
+        `<head>
+    ${metaTags}
+    ${htmlSource.match(/<head>([\s\S]*?)<\/head>/)?.[1] || ""}
+</head>`,
+    );
 }

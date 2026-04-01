@@ -1,7 +1,8 @@
 import plugin from "bun-plugin-tailwind";
+import galleryPlugin from "./plugins/gallery-plugin";
 import { $ } from "bun";
 import fs from "fs";
-import { processGalleryHTML } from "./build-utils";
+import { processGalleryHTML, injectSEOTags } from "./build-utils";
 
 async function buildDev() {
     console.log("Building for development...");
@@ -26,7 +27,8 @@ async function buildDev() {
     // Process gallery.html directly without bundling
     const gallerySource = await Bun.file("./gallery.html").text();
     const { html: processedGallery } = await processGalleryHTML(gallerySource);
-    await Bun.write(".dev/gallery.html", processedGallery);
+    let galleryHTML = injectSEOTags(processedGallery, "gallery");
+    await Bun.write(".dev/gallery.html", galleryHTML);
     console.log("✓ Gallery generated");
 
     // Build index separately
@@ -40,6 +42,11 @@ async function buildDev() {
             "process.env.NODE_ENV": JSON.stringify("development"),
         },
     });
+
+    // Inject SEO tags into index.html
+    const indexSource = await Bun.file("./.dev/index.html").text();
+    const indexWithSEO = injectSEOTags(indexSource, "index");
+    await Bun.write(".dev/index.html", indexWithSEO);
 
     console.log("✓ Index built");
 

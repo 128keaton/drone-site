@@ -1,6 +1,6 @@
 import plugin from "bun-plugin-tailwind";
 import { $ } from "bun";
-import { processGalleryHTML } from "./build-utils";
+import { processGalleryHTML, injectSEOTags } from "./build-utils";
 
 await $`rm -rf docs`;
 
@@ -21,6 +21,11 @@ await Bun.build({
         "process.env.NODE_ENV": JSON.stringify("production"),
     },
 });
+
+// Inject SEO tags into index.html
+const indexSource = await Bun.file("./docs/index.html").text();
+const indexWithSEO = injectSEOTags(indexSource, "index");
+await Bun.write("docs/index.html", indexWithSEO);
 
 // Build CSS
 await Bun.build({
@@ -48,11 +53,12 @@ const {
     categoryCount,
 } = await processGalleryHTML(gallerySource);
 
-// Fix CSS path and write
-const galleryWithCSS = processedGallery.replace(
+// Fix CSS path and inject SEO tags
+let galleryWithCSS = processedGallery.replace(
     /href="\.\/styles\.css"/g,
     'href="./index.css"',
 );
+galleryWithCSS = injectSEOTags(galleryWithCSS, "gallery");
 await Bun.write("docs/gallery.html", galleryWithCSS);
 
 // Copy image folders
