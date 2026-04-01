@@ -47,7 +47,7 @@ async function buildDev() {
     console.log("✓ Copying image folders...");
     await $`cp -r fatdanny2 .dev/fatdanny2 2>/dev/null || true`;
     await $`cp -r fatdanny .dev/fatdanny 2>/dev/null || true`;
-    await $`cp -r poop .dev/poop 2>/dev/null || true`;
+    await $`cp -r ass_et .dev/ass_et 2>/dev/null || true`;
 
     console.log("\n✓ Development build complete");
     console.log("  CSS, gallery, and images ready in .dev/");

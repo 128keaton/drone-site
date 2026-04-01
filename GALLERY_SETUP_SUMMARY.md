@@ -128,7 +128,7 @@ website/
 ├── package.json                ← Scripts
 ├── fatdanny/                   ← Images (General & Night Time)
 ├── fatdanny2/                  ← Images (Real Estate)
-├── poop/                       ← Images (additional)
+├── ass_et/                       ← Images (additional)
 └── docs/                       ← Build output (DEPLOY THIS)
 ```
 

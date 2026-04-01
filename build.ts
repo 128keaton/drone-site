@@ -59,7 +59,7 @@ await Bun.write("docs/gallery.html", galleryWithCSS);
 console.log("✓ Copying image folders...");
 await $`cp -r fatdanny2 docs/fatdanny2 2>/dev/null || true`;
 await $`cp -r fatdanny docs/fatdanny 2>/dev/null || true`;
-await $`cp -r poop docs/poop 2>/dev/null || true`;
+await $`cp -r ass_et docs/ass_et 2>/dev/null || true`;
 
 console.log(`✓ Gallery: ${categoryCount} categories with ${imageCount} images`);
 console.log("✓ Production build complete");

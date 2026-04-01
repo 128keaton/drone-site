@@ -1,14 +1,15 @@
+import type { BunPlugin } from "bun";
 import { readdir } from "fs/promises";
 import { extname } from "path";
 
-export interface GallerySection {
+interface GallerySection {
     id: string;
     title: string;
     description: string;
     directory: string;
 }
 
-export interface GalleryImage {
+interface GalleryImage {
     src: string;
     alt: string;
 }
@@ -45,7 +46,7 @@ const SUPPORTED_EXTENSIONS = new Set([
     ".gif",
 ]);
 
-export async function getImagesFromDirectory(
+async function getImagesFromDirectory(
     dirPath: string,
 ): Promise<GalleryImage[]> {
     try {
@@ -129,49 +130,75 @@ function generateMobileNavigation(sections: GallerySection[]): string {
         .join("\n");
 }
 
-export async function processGalleryHTML(
-    htmlSource: string,
-): Promise<{ html: string; imageCount: number; categoryCount: number }> {
-    const gallerySections: string[] = [];
-    const navSections: GallerySection[] = [];
+const galleryPlugin: BunPlugin = {
+    name: "gallery-plugin",
+    async setup(build) {
+        build.onLoad({ filter: /gallery\.html$/ }, async (args) => {
+            const content = await Bun.file(args.path).text();
 
-    for (const section of GALLERY_SECTIONS) {
-        const images = await getImagesFromDirectory(section.directory);
-        if (images.length > 0) {
-            gallerySections.push(generateGallerySection(section, images));
-            navSections.push(section);
-        }
-    }
+            try {
+                // Generate gallery sections
+                const gallerySections: string[] = [];
+                const navSections: GallerySection[] = [];
 
-    let processed = htmlSource.replace(
-        /<!-- GALLERY_SECTIONS_START -->[\s\S]*?<!-- GALLERY_SECTIONS_END -->/,
-        `<!-- GALLERY_SECTIONS_START -->
+                for (const section of GALLERY_SECTIONS) {
+                    const images = await getImagesFromDirectory(
+                        section.directory,
+                    );
+                    if (images.length > 0) {
+                        gallerySections.push(
+                            generateGallerySection(section, images),
+                        );
+                        navSections.push(section);
+                    }
+                }
+
+                // Replace the gallery sections
+                let replacedContent = content.replace(
+                    /<!-- GALLERY_SECTIONS_START -->[\s\S]*?<!-- GALLERY_SECTIONS_END -->/,
+                    `<!-- GALLERY_SECTIONS_START -->
 ${gallerySections.join("\n")}
                     <!-- GALLERY_SECTIONS_END -->`,
-    );
+                );
 
-    processed = processed.replace(
-        /<!-- GALLERY_NAV_START -->[\s\S]*?<!-- GALLERY_NAV_END -->/,
-        `<!-- GALLERY_NAV_START -->
+                // Replace the navigation
+                replacedContent = replacedContent.replace(
+                    /<!-- GALLERY_NAV_START -->[\s\S]*?<!-- GALLERY_NAV_END -->/,
+                    `<!-- GALLERY_NAV_START -->
 ${generateNavigation(navSections)}
                         <!-- GALLERY_NAV_END -->`,
-    );
+                );
 
-    processed = processed.replace(
-        /<!-- GALLERY_MOBILE_NAV_START -->[\s\S]*?<!-- GALLERY_MOBILE_NAV_END -->/,
-        `<!-- GALLERY_MOBILE_NAV_START -->
+                // Replace mobile navigation
+                replacedContent = replacedContent.replace(
+                    /<!-- GALLERY_MOBILE_NAV_START -->[\s\S]*?<!-- GALLERY_MOBILE_NAV_END -->/,
+                    `<!-- GALLERY_MOBILE_NAV_START -->
 ${generateMobileNavigation(navSections)}
                     <!-- GALLERY_MOBILE_NAV_END -->`,
-    );
+                );
 
-    const imageCount = gallerySections.reduce(
-        (sum, s) => sum + (s.match(/<button/g)?.length || 0),
-        0,
-    );
+                const imageCount = gallerySections.reduce(
+                    (sum, s) => sum + (s.match(/<button/g)?.length || 0),
+                    0,
+                );
 
-    return {
-        html: processed,
-        imageCount,
-        categoryCount: navSections.length,
-    };
-}
+                console.log(
+                    `✓ Gallery plugin: Generated ${navSections.length} categories with ${imageCount} images`,
+                );
+
+                return {
+                    contents: replacedContent,
+                    loader: "text",
+                };
+            } catch (error) {
+                console.error("Gallery plugin error:", error);
+                return {
+                    contents: content,
+                    loader: "text",
+                };
+            }
+        });
+    },
+};
+
+export default galleryPlugin;
