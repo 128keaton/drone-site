@@ -105,8 +105,6 @@
             <!-- Gallery Modal -->
             <dialog id="gallery-modal" class="modal">
                 <div class="modal-box max-w-6xl">
-                    <h3 id="gallery-modal-title" class="font-bold text-lg"></h3>
-
                     <div class="relative mt-4">
                         <button
                             id="gallery-prev"
@@ -156,7 +154,7 @@
 
                     <div class="modal-action">
                         <form method="dialog">
-                            <button type="button" class="btn">Close</button>
+                            <button type="submit" class="btn">Close</button>
                         </form>
                     </div>
                 </div>
@@ -165,7 +163,6 @@
 
         <script>
             const modal = document.getElementById("gallery-modal");
-            const modalTitle = document.getElementById("gallery-modal-title");
             const modalImageWrap = document.getElementById(
                 "gallery-modal-image-wrap",
             );
@@ -184,8 +181,6 @@
                 const button = items[currentIndex];
                 const img = button.querySelector("img");
                 const alt = img?.alt ?? "";
-
-                if (modalTitle) modalTitle.textContent = alt;
 
                 if (modalImageWrap) {
                     modalImageWrap.innerHTML = "";
