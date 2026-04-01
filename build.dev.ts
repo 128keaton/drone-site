@@ -1,8 +1,7 @@
 import plugin from "bun-plugin-tailwind";
-import galleryPlugin from "./plugins/gallery-plugin";
 import { $ } from "bun";
 import fs from "fs";
-import path from "path";
+import { processGalleryHTML } from "./build-utils";
 
 async function buildDev() {
     console.log("Building for development...");
@@ -24,18 +23,10 @@ async function buildDev() {
 
     console.log("✓ CSS processed");
 
-    // Build gallery with plugin - write as text to avoid bundling issues
-    await Bun.build({
-        entrypoints: ["./gallery.html"],
-        outdir: ".dev",
-        plugins: [galleryPlugin, plugin],
-        minify: false,
-        sourcemap: "inline",
-        define: {
-            "process.env.NODE_ENV": JSON.stringify("development"),
-        },
-    });
-
+    // Process gallery.html directly without bundling
+    const gallerySource = await Bun.file("./gallery.html").text();
+    const { html: processedGallery } = await processGalleryHTML(gallerySource);
+    await Bun.write(".dev/gallery.html", processedGallery);
     console.log("✓ Gallery generated");
 
     // Build index separately
@@ -51,24 +42,6 @@ async function buildDev() {
     });
 
     console.log("✓ Index built");
-
-    // Extract gallery.html from the gallery.js bundle
-    // The regex now handles content with backticks by being greedy and stopping at the last backtick
-    try {
-        const galleryJs = await Bun.file(".dev/gallery.js").text();
-        // Match from the opening backtick and capture everything until the final backtick before the semicolon
-        const startMatch = galleryJs.indexOf("`");
-        const endMatch = galleryJs.lastIndexOf("`");
-
-        if (startMatch !== -1 && endMatch !== -1 && startMatch < endMatch) {
-            const html = galleryJs.substring(startMatch + 1, endMatch);
-            await Bun.write(".dev/gallery.html", html);
-            await $`rm -f .dev/gallery.js .dev/gallery.js.map 2>/dev/null || true`;
-            console.log("✓ Gallery extracted from bundle");
-        }
-    } catch (err) {
-        console.warn("⚠ Could not extract gallery.html from bundle");
-    }
 
     // Copy image folders to .dev so they're accessible
     console.log("✓ Copying image folders...");

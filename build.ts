@@ -1,6 +1,6 @@
 import plugin from "bun-plugin-tailwind";
-import galleryPlugin from "./plugins/gallery-plugin";
 import { $ } from "bun";
+import { processGalleryHTML } from "./build-utils";
 
 await $`rm -rf docs`;
 
@@ -8,7 +8,7 @@ await $`rm -rf docs`;
 await Bun.build({
     entrypoints: ["./index.html"],
     outdir: "docs",
-    plugins: [galleryPlugin, plugin],
+    plugins: [plugin],
     minify: true,
     naming: {
         entry: "[dir]/[name].[ext]",
@@ -22,14 +22,14 @@ await Bun.build({
     },
 });
 
-// Build gallery.html
-const galleryBuild = await Bun.build({
-    entrypoints: ["./gallery.html"],
+// Build CSS
+await Bun.build({
+    entrypoints: ["./styles.css"],
     outdir: "docs",
-    plugins: [galleryPlugin, plugin],
+    plugins: [plugin],
     minify: true,
     naming: {
-        entry: "[dir]/[name].[ext]",
+        entry: "[dir]/index.[ext]",
         chunk: "[name].[ext]",
         asset: "[name].[ext]",
     },
@@ -40,25 +40,26 @@ const galleryBuild = await Bun.build({
     },
 });
 
-// Extract gallery.html from the gallery.js bundle and write it as static HTML
-const galleryJs = await Bun.file("docs/gallery.js").text();
-const startMatch = galleryJs.indexOf("`");
-const endMatch = galleryJs.lastIndexOf("`");
+// Process and write gallery.html directly
+const gallerySource = await Bun.file("./gallery.html").text();
+const {
+    html: processedGallery,
+    imageCount,
+    categoryCount,
+} = await processGalleryHTML(gallerySource);
 
-if (startMatch !== -1 && endMatch !== -1 && startMatch < endMatch) {
-    let html = galleryJs.substring(startMatch + 1, endMatch);
+// Fix CSS path and write
+const galleryWithCSS = processedGallery.replace(
+    /href="\.\/styles\.css"/g,
+    'href="./index.css"',
+);
+await Bun.write("docs/gallery.html", galleryWithCSS);
 
-    // Fix CSS path - use ./index.css instead of ./styles.css
-    html = html.replace(/href="\.\/styles\.css"/g, 'href="./index.css"');
-
-    await Bun.write("docs/gallery.html", html);
-    await $`rm docs/gallery.js docs/gallery.js.map 2>/dev/null || true`;
-}
-
-// Copy image folders to docs so they're accessible
+// Copy image folders
 console.log("✓ Copying image folders...");
 await $`cp -r fatdanny2 docs/fatdanny2 2>/dev/null || true`;
 await $`cp -r fatdanny docs/fatdanny 2>/dev/null || true`;
 await $`cp -r poop docs/poop 2>/dev/null || true`;
 
+console.log(`✓ Gallery: ${categoryCount} categories with ${imageCount} images`);
 console.log("✓ Production build complete");
