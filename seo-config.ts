@@ -38,6 +38,10 @@ export const defaultSEO: SEOConfig = {
     twitterCard: "summary_large_image",
     author: "Mid-South Sky",
     robots: "index, follow",
+    ogImage:
+        "https://midsouthsky.com/fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+    twitterImage:
+        "https://midsouthsky.com/fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
 };
 
 export const pageConfigs: Record<string, SEOConfig> = {
