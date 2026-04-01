@@ -37,9 +37,9 @@ export const defaultSEO: SEOConfig = {
     author: "Mid-South Sky",
     robots: "index, follow",
     ogImage:
-        "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        "https://midsouthsky.com/dji_fly_20260212_191232_0114_1771003117613_photo.jpg",
     twitterImage:
-        "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        "https://midsouthsky.com/dji_fly_20260212_191232_0114_1771003117613_photo.jpg",
 };
 
 export const pageConfigs: Record<string, SEOConfig> = {
@@ -72,10 +72,8 @@ export const pageConfigs: Record<string, SEOConfig> = {
         author: "Mid-South Sky",
         robots: "index, follow",
         canonical: "https://midsouthsky.com/gallery",
-        ogImage:
-            "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
-        twitterImage:
-            "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        ogImage: "https://midsouthsky.com/asset/general/3455front.jpg",
+        twitterImage: "https://midsouthsky.com/asset/general/3455front.jpg",
     },
 };
 
