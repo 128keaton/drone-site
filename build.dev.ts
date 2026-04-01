@@ -1,7 +1,6 @@
-import plugin from "bun-plugin-tailwind";
-import galleryPlugin from "./plugins/gallery-plugin";
+import tailwind from "bun-plugin-tailwind";
 import { $ } from "bun";
-import fs from "fs";
+import fs from "node:fs";
 import { processGalleryHTML, injectSEOTags } from "./build-utils";
 
 async function buildDev() {
@@ -14,7 +13,7 @@ async function buildDev() {
     await Bun.build({
         entrypoints: ["./styles.css"],
         outdir: ".dev",
-        plugins: [plugin],
+        plugins: [tailwind],
         minify: false,
         sourcemap: "inline",
         define: {
@@ -27,7 +26,7 @@ async function buildDev() {
     // Process gallery.html directly without bundling
     const gallerySource = await Bun.file("./gallery.html").text();
     const { html: processedGallery } = await processGalleryHTML(gallerySource);
-    let galleryHTML = injectSEOTags(processedGallery, "gallery");
+    const galleryHTML = injectSEOTags(`${processedGallery}`, "gallery");
     await Bun.write(".dev/gallery.html", galleryHTML);
     console.log("✓ Gallery generated");
 
@@ -35,7 +34,7 @@ async function buildDev() {
     await Bun.build({
         entrypoints: ["./index.html"],
         outdir: ".dev",
-        plugins: [plugin],
+        plugins: [tailwind],
         minify: false,
         sourcemap: "inline",
         define: {
@@ -50,11 +49,9 @@ async function buildDev() {
 
     console.log("✓ Index built");
 
-    // Copy image folders to .dev so they're accessible
-    console.log("✓ Copying image folders...");
-    await $`cp -r fatdanny2 .dev/fatdanny2 2>/dev/null || true`;
-    await $`cp -r fatdanny .dev/fatdanny 2>/dev/null || true`;
-    await $`cp -r ass_et .dev/ass_et 2>/dev/null || true`;
+    // Copy asset folder to .dev so they're accessible
+    console.log("✓ Copying assets...");
+    await $`cp -r asset .dev/asset 2>/dev/null || true`;
 
     console.log("\n✓ Development build complete");
     console.log("  CSS, gallery, and images ready in .dev/");
@@ -73,11 +70,12 @@ if (isWatchMode) {
     const PORT = 3000;
     console.log(`\n🚀 Starting dev server on http://localhost:${PORT}\n`);
 
-    const server = Bun.serve({
+    Bun.serve({
         port: PORT,
         async fetch(req) {
             const url = new URL(req.url);
-            let filePath = url.pathname === "/" ? "/index.html" : url.pathname;
+            const filePath =
+                url.pathname === "/" ? "/index.html" : url.pathname;
 
             // Try the exact path first
             let fullPath = `.dev${filePath}`;
@@ -87,7 +85,7 @@ if (isWatchMode) {
                 if (exists) {
                     return new Response(file);
                 }
-            } catch (e) {
+            } catch (_) {
                 // File doesn't exist, try alternatives
             }
 
@@ -100,7 +98,7 @@ if (isWatchMode) {
                     if (exists) {
                         return new Response(file);
                     }
-                } catch (e) {
+                } catch (_) {
                     // File doesn't exist
                 }
             }

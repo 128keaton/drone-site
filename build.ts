@@ -61,11 +61,9 @@ let galleryWithCSS = processedGallery.replace(
 galleryWithCSS = injectSEOTags(galleryWithCSS, "gallery");
 await Bun.write("docs/gallery.html", galleryWithCSS);
 
-// Copy image folders
-console.log("✓ Copying image folders...");
-await $`cp -r fatdanny2 docs/fatdanny2 2>/dev/null || true`;
-await $`cp -r fatdanny docs/fatdanny 2>/dev/null || true`;
-await $`cp -r ass_et docs/ass_et 2>/dev/null || true`;
+// Copy asset folder
+console.log("✓ Copying assets...");
+await $`cp -r asset docs/asset 2>/dev/null || true`;
 
 console.log(`✓ Gallery: ${categoryCount} categories with ${imageCount} images`);
 console.log("✓ Production build complete");

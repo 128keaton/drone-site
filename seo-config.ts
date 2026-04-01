@@ -1,5 +1,3 @@
-import { concatArrayBuffers } from "bun";
-
 export interface SEOConfig {
     title: string;
     description: string;
@@ -39,9 +37,9 @@ export const defaultSEO: SEOConfig = {
     author: "Mid-South Sky",
     robots: "index, follow",
     ogImage:
-        "https://midsouthsky.com/fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
     twitterImage:
-        "https://midsouthsky.com/fatdanny/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
 };
 
 export const pageConfigs: Record<string, SEOConfig> = {
@@ -74,6 +72,10 @@ export const pageConfigs: Record<string, SEOConfig> = {
         author: "Mid-South Sky",
         robots: "index, follow",
         canonical: "https://midsouthsky.com/gallery",
+        ogImage:
+            "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
+        twitterImage:
+            "https://midsouthsky.com/asset/dji_fly_20260212_191454_0117_1771003109184_photo.jpg",
     },
 };
 

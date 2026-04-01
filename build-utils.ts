@@ -7,6 +7,7 @@ export interface GallerySection {
     title: string;
     description: string;
     directory: string;
+    youtubeId?: string;
 }
 
 export interface GalleryImage {
@@ -20,21 +21,29 @@ const GALLERY_SECTIONS: GallerySection[] = [
         title: "Real Estate",
         description:
             "Professional aerial photography for property showcases and development projects.",
-        directory: "fatdanny2",
+        directory: "asset",
     },
     {
         id: "general",
         title: "General",
         description:
             "Beautiful aerial landscapes and scenic views captured from the sky.",
-        directory: "fatdanny",
+        directory: "asset",
     },
     {
         id: "night-time",
         title: "Night Time",
         description:
             "Stunning twilight and evening shots capturing the magic of dusk and night.",
-        directory: "ass_et",
+        directory: "asset",
+    },
+    {
+        id: "cinematography",
+        title: "Dynamic Cinematography",
+        description:
+            "High-quality drone videography and cinematic footage showcasing the art of aerial cinematography.",
+        directory: "asset",
+        youtubeId: "3Bl_jzsg4cM",
     },
 ];
 
@@ -57,7 +66,7 @@ export async function getImagesFromDirectory(
             const ext = extname(file).toLowerCase();
             if (SUPPORTED_EXTENSIONS.has(ext)) {
                 images.push({
-                    src: `./${dirPath}/${file}`,
+                    src: `./asset/${file}`,
                     alt: file.replace(/\.[^/.]+$/, "").replace(/[_-]/g, " "),
                 });
             }
@@ -110,6 +119,32 @@ ${cards}
                     </section>`;
 }
 
+function generateCinematographySection(section: GallerySection): string {
+    return `
+                    <section id="${section.id}" class="py-16 bg-base-200 scroll-mt-32 lg:scroll-mt-16 w-full lg:mx-4 lg:mt-4 lg:mb-4 lg:rounded-lg lg:border lg:border-base-content/20">
+                <div class="mx-auto max-w-6xl px-6">
+                    <div class="mb-12">
+                        <div class="inline-block">
+                            <h2 class="text-3xl sm:text-4xl font-bold">${section.title}</h2>
+                            <div class="mt-3 h-1 w-24 bg-linear-to-r from-secondary to-primary"></div>
+                        </div>
+                        <p class="mt-4 text-base-content/70 max-w-2xl">${section.description}</p>
+                    </div>
+                    <div class="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-base-300 flex items-center justify-center">
+                        <iframe
+                            class="w-full h-full"
+                            src="https://www.youtube.com/embed/${section.youtubeId}"
+                            title="${section.title}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </div>
+                    </section>`;
+}
+
 function generateNavigation(sections: GallerySection[]): string {
     return sections
         .map(
@@ -137,10 +172,16 @@ export async function processGalleryHTML(
     const navSections: GallerySection[] = [];
 
     for (const section of GALLERY_SECTIONS) {
-        const images = await getImagesFromDirectory(section.directory);
-        if (images.length > 0) {
-            gallerySections.push(generateGallerySection(section, images));
+        if (section.youtubeId) {
+            // For cinematography section, just add it without checking images
+            gallerySections.push(generateCinematographySection(section));
             navSections.push(section);
+        } else {
+            const images = await getImagesFromDirectory(section.directory);
+            if (images.length > 0) {
+                gallerySections.push(generateGallerySection(section, images));
+                navSections.push(section);
+            }
         }
     }
 
