@@ -42,12 +42,23 @@ const galleryBuild = await Bun.build({
 
 // Extract gallery.html from the gallery.js bundle and write it as static HTML
 const galleryJs = await Bun.file("docs/gallery.js").text();
-const match = galleryJs.match(/var\s+\w+=`([\s\S]*?)`/);
+const startMatch = galleryJs.indexOf("`");
+const endMatch = galleryJs.lastIndexOf("`");
 
-if (match && match[1]) {
-    const html = match[1];
+if (startMatch !== -1 && endMatch !== -1 && startMatch < endMatch) {
+    let html = galleryJs.substring(startMatch + 1, endMatch);
+
+    // Fix CSS path - use ./index.css instead of ./styles.css
+    html = html.replace(/href="\.\/styles\.css"/g, 'href="./index.css"');
+
     await Bun.write("docs/gallery.html", html);
     await $`rm docs/gallery.js docs/gallery.js.map 2>/dev/null || true`;
 }
+
+// Copy image folders to docs so they're accessible
+console.log("✓ Copying image folders...");
+await $`cp -r fatdanny2 docs/fatdanny2 2>/dev/null || true`;
+await $`cp -r fatdanny docs/fatdanny 2>/dev/null || true`;
+await $`cp -r poop docs/poop 2>/dev/null || true`;
 
 console.log("✓ Production build complete");
