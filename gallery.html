@@ -158,6 +158,9 @@
                         </form>
                     </div>
                 </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button class="opacity-0" type="submit">close</button>
+                </form>
             </dialog>
         </main>
 
@@ -180,7 +183,6 @@
                 currentIndex = (index + items.length) % items.length;
                 const button = items[currentIndex];
                 const img = button.querySelector("img");
-                const alt = img?.alt ?? "";
 
                 if (modalImageWrap) {
                     modalImageWrap.innerHTML = "";
