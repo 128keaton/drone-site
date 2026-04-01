@@ -1,3 +1,6 @@
+# Bun configuration for development and production
+
 [serve.static]
 env = "PUBLIC_*"
-plugins = ["bun-plugin-tailwind"]
+# Serve from project root so images and other assets are accessible
+# Built CSS and HTML are still served from .dev/ when available
