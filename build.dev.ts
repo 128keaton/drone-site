@@ -30,6 +30,12 @@ async function buildDev() {
     await Bun.write(".dev/gallery.html", galleryHTML);
     console.log("✓ Gallery generated");
 
+    // Process pricing.html directly without bundling
+    const pricingSource = await Bun.file("./pricing.html").text();
+    const pricingHTML = injectSEOTags(`${pricingSource}`, "pricing");
+    await Bun.write(".dev/pricing.html", pricingHTML);
+    console.log("✓ Pricing generated");
+
     // Build index separately
     await Bun.build({
         entrypoints: ["./index.html"],
@@ -110,7 +116,12 @@ if (isWatchMode) {
     console.log(`Server running. Watching for changes...\n`);
 
     // Watch for file changes
-    const filesToWatch = ["index.html", "gallery.html", "styles.css"];
+    const filesToWatch = [
+        "index.html",
+        "gallery.html",
+        "styles.css",
+        "pricing.html",
+    ];
 
     let buildTimeout: Timer | null = null;
 

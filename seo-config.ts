@@ -75,6 +75,19 @@ export const pageConfigs: Record<string, SEOConfig> = {
         ogImage: "https://midsouthsky.com/asset/general/3455front.jpg",
         twitterImage: "https://midsouthsky.com/asset/general/3455front.jpg",
     },
+    pricing: {
+        title: "Pricing | Mid-South Sky",
+        description:
+            "View our competitive pricing for aerial photography and drone services across the Mid-South.",
+        ogTitle: "Pricing | Mid-South Sky",
+        ogDescription:
+            "Check out our transparent pricing for professional aerial photography and drone services.",
+        ogType: "website",
+        twitterCard: "summary_large_image",
+        author: "Mid-South Sky",
+        robots: "index, follow",
+        canonical: "https://midsouthsky.com/pricing",
+    },
 };
 
 export function generateMetaTags(pageKey: string): string {

@@ -45,6 +45,17 @@ await Bun.build({
     },
 });
 
+// Process and write pricing.html directly
+const pricingSource = await Bun.file("./pricing.html").text();
+
+// Fix CSS path and inject SEO tags
+let pricingWithCSS = pricingSource.replace(
+    /href="\.\/styles\.css"/g,
+    'href="./index.css"',
+);
+pricingWithCSS = injectSEOTags(pricingWithCSS, "pricing");
+await Bun.write("docs/pricing.html", pricingWithCSS);
+
 // Process and write gallery.html directly
 const gallerySource = await Bun.file("./gallery.html").text();
 const {
