@@ -24,6 +24,13 @@ const GALLERY_SECTIONS: GallerySection[] = [
         directory: "asset/real-estate",
     },
     {
+        id: "virtual-staging",
+        title: "Virtual Staging",
+        description:
+            "Immersive virtual staging solutions for real estate and interior design.",
+        directory: "asset/virtual-staging",
+    },
+    {
         id: "general",
         title: "General",
         description:
